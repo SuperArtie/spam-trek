@@ -21,7 +21,7 @@ var Mailbox = (function(){
     var sumsquares = Math.pow(this.cX - game.spam.cX, 2) + Math.pow(this.cY - game.spam.cY, 2),
         distance   = Math.sqrt(sumsquares);
 
-    return distance < (this.r * 0.5);
+    return distance < (this.r * 0.75);
   };
 
   return Mailbox;

@@ -8,6 +8,8 @@ var Filter = (function(){
     this.width  = 10;
     this.length = 10;
     this.speed  = Math.floor(Math.random()*4) + 1;
+    this.cX     = this.x + (this.width / 2);
+    this.cY     = this.y + (this.height / 2);
   }
   Filter.prototype.draw = function(game){
     game.ctx.beginPath();
@@ -16,5 +18,12 @@ var Filter = (function(){
     game.ctx.closePath();
     game.ctx.stroke();
   };
+
+//  Filter.prototype.catchSpam = function(game){
+//    var sumsquares = Math.pow(this.cX - game.spam.cX, 2) + Math.pow(this.cY - game.spam.cY, 2),
+//        distance   = Math.sqrt(sumsquares);
+
+//    return distance < (this.r * 0.75);
+//  };
   return Filter;
 })();

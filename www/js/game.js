@@ -12,6 +12,7 @@ var Game = (function(){
     this.canvas.width  = window.innerWidth;
     this.assets        = Asset.load();
     this.inBox         = false;
+    this.filtered      = false;
     this.listen();
   }
   Game.prototype.listen = function(){
@@ -21,6 +22,7 @@ var Game = (function(){
   };
   Game.prototype.loop = function(timestamp){
     this.inBox = this.mailbox.isSpamInside(this);
+//    this.filtered = filter.catchSpam(this.spam);
     this.clear();
     this.safeZone.draw(this);
     this.mailbox.draw(this);
