@@ -4,15 +4,34 @@
   angular.module('spam-trek')
   .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
     $scope.title = 'spam-trek deluxe';
-    var game = null;
+    var game  = null,
+        timer = null;
+    resetClock();
     //document.addEventListener('deviceready', function(){
     //  game = new Game();
     //});
     $scope.start = function(){
       game = new Game();
       game.start();
+      startClock();
     };
-    $scope.start();
+    function startClock(){
+      resetClock();
+      cancelTimer();
+      timer = $interval(function(){
+        $scope.clock++;
+      }, 1000);
+    }
+    function resetClock(){
+      $scope.clock = 0;
+    }
+    window.addEventListener('gameover', function(){
+      cancelTimer();
+    });
+    function cancelTimer(){
+      $interval.cancel(timer);
+    }
+
     /*
     var bodyHeight    = window.innerHeight,
         headerHeight  = document.getElementsByTagName('ion-header-bar')[0].clientHeight,

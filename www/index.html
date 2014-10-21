@@ -11,14 +11,19 @@
     <script src="js/main_controller.js"></script>
     <script src="js/game.js"></script>
     <script src="js/filter.js"></script>
+    <script src="js/spam.js"></script>
+    <script src="js/assets.js"></script>
+    <script src="js/safezone.js"></script>
+    <script src="js/mailbox.js"></script>
   </head>
   <body ng-app="spam-trek" ng-controller="MainCtrl">
     <ion-pane>
       <ion-header-bar class="bar-stable">
+        <button class="button button-assertive">{{clock}} s</button>
         <h1 class="title">spam-trek 5 and a half deep spam 2 deluxe next spammeration</h1>
+        <button ng-click="start()" class="button button-balanced">START!!!</button>
       </ion-header-bar>
       <ion-content>
-        <h1>{{title}}</h1>
         <canvas id="canvas"></canvas>
       </ion-content>
     </ion-pane>
