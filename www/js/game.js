@@ -28,7 +28,7 @@ var Game = (function(){
       if(filters[i].catchSpam(self.spam)){
         console.log('catchSpam result inside loop>>>>>>>', filters[i].catchSpam(self.spam));
         self.filtered = true;
-//        break;
+        break;
       }else{
         self.filtered = false;
       }
