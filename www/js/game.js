@@ -60,7 +60,7 @@ var Game = (function(){
     this.mailbox = new Mailbox(this);
     this.spam = new Spam(this);
     setInterval(generateFilters(self), 1000);
-    generateEnvelopes(self);
+    generateEnvelopes(this);
     this.loop();
   };
   function generateFilters(game){
@@ -72,9 +72,9 @@ var Game = (function(){
     for(var i = 0; i < 11; i++){
       console.log('game in for loop>>>', game);
       console.log('Envelope....', Envelope);
-      var envelope = new Envelope(game);
-      console.log('envelope after New Envelope>>>', envelope);
-      envelopes.push(envelope);
+      var envelopeX = new Envelope(game);
+      console.log('envelopeX after New Envelope>>>', envelopeX);
+      envelopes.push(envelopeX);
       console.log('envelopes in generateEnvelopes>>', envelopes);
     }
   }
