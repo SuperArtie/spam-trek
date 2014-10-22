@@ -52,6 +52,7 @@ var Game = (function(){
     for(i = 0; i < filters.length; i++){
       filters[i].draw(this);
     }
+
     for(i = 0; i < buffers.length; i++){
       buffers[i].draw(this);
     }
@@ -59,8 +60,6 @@ var Game = (function(){
     for(i = 0; i < envelopes.length; i++){
       envelopes[i].draw(this);
     }
-
-
 
     if(this.inBox || this.filtered){
       window.dispatchEvent(new Event('gameover'));
@@ -75,9 +74,11 @@ var Game = (function(){
     this.safeZone = new SafeZone(this);
     this.mailbox = new Mailbox(this);
     this.spam = new Spam(this);
+
     setInterval(generateBuffers, 1000);
     setInterval(generateFilters, 1000);
     generateEnvelopes(this);
+
     this.loop();
   };
 
