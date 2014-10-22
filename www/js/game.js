@@ -21,16 +21,24 @@ var Game = (function(){
     }.bind(this));
   };
   Game.prototype.loop = function(timestamp){
+    var self = this;
     this.inBox = this.mailbox.isSpamInside(this);
-//    this.filtered = filter.catchSpam(this.spam);
+    for(var i = 0; i < filters.length; i++){
+      if(filters[i].catchSpam(self.spam)){
+        self.filtered = true;
+        break;
+      }else{
+        self.filtered = false;
+      }
+    }
     this.clear();
     this.safeZone.draw(this);
     this.mailbox.draw(this);
     this.spam.draw(this);
-    for(var i = 0; i < filters.length; i++){
+    for(i = 0; i < filters.length; i++){
       filters[i].draw(this);
     }
-    if(this.inBox){
+    if(this.inBox || this.filtered){
       window.dispatchEvent(new Event('gameover'));
     }else{
       window.requestAnimationFrame(this.loop.bind(this));

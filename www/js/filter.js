@@ -19,11 +19,16 @@ var Filter = (function(){
     game.ctx.stroke();
   };
 
-//  Filter.prototype.catchSpam = function(game){
-//    var sumsquares = Math.pow(this.cX - game.spam.cX, 2) + Math.pow(this.cY - game.spam.cY, 2),
-//        distance   = Math.sqrt(sumsquares);
-
-//    return distance < (this.r * 0.75);
-//  };
+  Filter.prototype.catchSpam = function(spam){
+    var topLeft = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
+        topLeft = topLeft < (this.r * 0.75);
+    var topRight = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
+        topRight = topRight < (this.r * 0.75);
+    var bottomLeft = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
+        bottomLeft = bottomLeft < (this.r * 0.75);
+    var bottomRight = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
+        bottomRight = bottomRight < (this.r * 0.75);
+    return topLeft || topRight || bottomLeft || bottomRight;
+  };
   return Filter;
 })();
