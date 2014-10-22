@@ -22,11 +22,11 @@ var Game = (function(){
   };
   Game.prototype.loop = function(timestamp){
     var self = this;
+    // is the spam in the mailbox?
     this.inBox = this.mailbox.isSpamInside(this);
+    // has the spam been filtered
     for(var i = 0; i < filters.length; i++){
-      console.log('catchSpam result before loop>>>>>>>', filters[i].catchSpam(self.spam));
       if(filters[i].catchSpam(self.spam)){
-        console.log('catchSpam result inside loop>>>>>>>', filters[i].catchSpam(self.spam));
         self.filtered = true;
         break;
       }else{
@@ -53,7 +53,7 @@ var Game = (function(){
     this.safeZone = new SafeZone(this);
     this.mailbox = new Mailbox(this);
     this.spam = new Spam(this);
-    setInterval(generateFilters, 50);
+    setInterval(generateFilters, 1000);
     this.loop();
   };
   function generateFilters(){

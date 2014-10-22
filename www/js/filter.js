@@ -9,7 +9,7 @@ var Filter = (function(){
     this.length = 10;
     this.speed  = Math.floor(Math.random()*4) + 1;
     this.cX     = this.left + (this.width / 2);
-    this.cY;
+    this.cY     = this.top + (this.length / 2);
   }
   Filter.prototype.draw = function(game){
     game.ctx.beginPath();
@@ -20,17 +20,11 @@ var Filter = (function(){
   };
 
   Filter.prototype.catchSpam = function(spam){
-    console.log('SPAM>>>>>>>', spam);
-    console.log('this in catchSpam before cX, cY definition:', this);
-    console.log('spam.r', spam.r);
-    this.cX     = this.left + (this.width / 2);
-    this.cY     = this.top + (this.length / 2);
-    console.log('this in catchSpam after definition:', this);
-    var sumSquares = Math.pow((spam.cX - this.cX), 2) + Math.pow((spam.cY - this.cY), 2);
-    console.log('sumSquares in catchSpam>>>', sumSquares);
-    var distance = Math.sqrt(sumSquares);
-    console.log('distance in catchSpam>>>>>', distance);
-    var spamCaught = distance < spam.r;
+    this.cX         = this.left + (this.width / 2);
+    this.cY         = this.top + (this.length / 2);
+    var sumSquares  = Math.pow((spam.cX - this.cX), 2) + Math.pow((spam.cY - this.cY), 2),
+    distance        = Math.sqrt(sumSquares),
+    spamCaught      = distance < spam.r + 3;
 
     return spamCaught;
   };
