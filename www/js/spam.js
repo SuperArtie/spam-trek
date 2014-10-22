@@ -10,6 +10,7 @@ var Spam = (function(){
     this.y      = Math.floor(Math.random() * ((game.canvas.height- this.height) - (game.canvas.height - this.height * 2)) + (game.canvas.height - this.height * 2));
     this.cX     = this.x + (this.width / 2);
     this.cY     = this.y + (this.height / 2);
+    this.r      = this.width / 2;
   }
 
   Spam.prototype.draw = function(game){

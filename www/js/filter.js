@@ -20,15 +20,22 @@ var Filter = (function(){
   };
 
   Filter.prototype.catchSpam = function(spam){
-    var topLeft = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
-        topLeft = topLeft < (this.r * 0.75);
-    var topRight = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
-        topRight = topRight < (this.r * 0.75);
-    var bottomLeft = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
-        bottomLeft = bottomLeft < (this.r * 0.75);
-    var bottomRight = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2));
-        bottomRight = bottomRight < (this.r * 0.75);
-    return topLeft || topRight || bottomLeft || bottomRight;
+    console.log('SPAM>>>>>>>', spam);
+    var topLeftSum = Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - this.y, 2);
+        console.log = ('spam.r in catchSpam>>>>>',spam.r);
+        console.log = ('topLeftSum before comparison>>>>>', topLeftSum);
+    var topLeftDistance = Math.sqrt(topLeftSum) < (spam.r);
+//        console.log('topLeft>>>>>>>>', topLeft);
+    var topRight = Math.sqrt(Math.pow(spam.cX - (this.x + 10), 2) + Math.pow(spam.cY - this.y, 2));
+        topRight = topRight < (spam.r);
+//        console.log('topRight>>>>>>>', topRight);
+    var bottomLeft = Math.sqrt(Math.pow(spam.cX - this.x, 2) + Math.pow(spam.cY - (this.y - 10), 2));
+        bottomLeft = bottomLeft < (spam.r);
+//        console.log('bottomLeft>>>>>', bottomLeft);
+    var bottomRight = Math.sqrt(Math.pow(spam.cX - (this.x + 10), 2) + Math.pow(spam.cY - (this.y - 10), 2));
+        bottomRight = bottomRight < (spam.r);
+//        console.log('bottomRight>>>>', bottomRight);
+    return (topLeftDistance || topRight || bottomLeft || bottomRight);
   };
   return Filter;
 })();

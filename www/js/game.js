@@ -24,9 +24,11 @@ var Game = (function(){
     var self = this;
     this.inBox = this.mailbox.isSpamInside(this);
     for(var i = 0; i < filters.length; i++){
+      console.log('catchSpam result before loop>>>>>>>', filters[i].catchSpam(self.spam));
       if(filters[i].catchSpam(self.spam)){
+        console.log('catchSpam result inside loop>>>>>>>', filters[i].catchSpam(self.spam));
         self.filtered = true;
-        break;
+//        break;
       }else{
         self.filtered = false;
       }
@@ -51,7 +53,7 @@ var Game = (function(){
     this.safeZone = new SafeZone(this);
     this.mailbox = new Mailbox(this);
     this.spam = new Spam(this);
-    setInterval(generateFilters, 1500);
+    setInterval(generateFilters, 50);
     this.loop();
   };
   function generateFilters(){
