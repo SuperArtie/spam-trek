@@ -21,8 +21,9 @@ html
   body(ng-app='spam-trek', ng-controller='MainCtrl')
     ion-pane
       ion-header-bar.bar-stable
-        button.button.button-assertive {{clock}} s
-        h1.title spam-trek 5 and a half deep spam 2 deluxe next spammeration
-        button.button.button-balanced(ng-click='start()') START!!!
+        div {{clock}} s &nbsp;
+        h1.title SpamTrek
+        button.button.button-balanced(ng-click='start()', ng-show='startButton') START!
+        button.button.button-balanced(ng-click='stop()', ng-show='stopButton') RESET!
       ion-content
         canvas#canvas
