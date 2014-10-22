@@ -64,6 +64,11 @@ var Game = (function(){
 
     if(this.inBox || this.filtered || this.buffered){
       window.dispatchEvent(new Event('gameover'));
+      filters = [];
+      buffers = [];
+      envelopes = [];
+      clearInterval(this.buff);
+      clearInterval(this.filt);
     }else{
       window.requestAnimationFrame(this.loop.bind(this));
     }
@@ -76,23 +81,25 @@ var Game = (function(){
     this.mailbox = new Mailbox(this);
     this.spam = new Spam(this);
 
-    setInterval(generateBuffers, 1000);
-    setInterval(generateFilters, 1000);
+    this.buff = setInterval(generateBuffers, 1000);
+    this.filt = setInterval(generateFilters, 1000);
     generateEnvelopes(this);
 
     this.loop();
   };
 
-<<<<<<< HEAD
-=======
   Game.prototype.stop = function(){
     this.saveZone = null;
     this.mailbox = null;
     this.spam = null;
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.clear();
+    filters = [];
+    buffers = [];
+    envelopes = [];
+    clearInterval(this.buff);
+    clearInterval(this.filt);
   };
 
->>>>>>> added stop/reset functionality
   function generateFilters(){
     var filter = new Filter(this);
     filters.push(filter);

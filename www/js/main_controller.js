@@ -14,11 +14,11 @@
         navigator.splashscreen.hide();
       }, 3000);
       console.log();
-      game = new Game();
+      //game = new Game();
     });
 
     $scope.start = function(){
-      //game = new Game();
+      game = new Game();
       game.start();
       startClock();
       $scope.startButton = false;
