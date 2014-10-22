@@ -15,6 +15,7 @@ var Game = (function(){
     this.assets        = Asset.load();
     this.inBox         = false;
     this.filtered      = false;
+    this.buffered      = false;
     this.listen();
   }
   Game.prototype.listen = function(){
@@ -38,10 +39,10 @@ var Game = (function(){
 
     for(var j = 0; j < buffers.length; j++){
       if(buffers[j].catchSpam(self.spam)){
-        self.filtered = true;
+        self.buffered = true;
         break;
       }else{
-        self.filtered = false;
+        self.buffered = false;
       }
     }
 
@@ -61,7 +62,7 @@ var Game = (function(){
       envelopes[i].draw(this);
     }
 
-    if(this.inBox || this.filtered){
+    if(this.inBox || this.filtered || this.buffered){
       window.dispatchEvent(new Event('gameover'));
     }else{
       window.requestAnimationFrame(this.loop.bind(this));
