@@ -1,16 +1,16 @@
-/* exported SafeZone */
+/* exported Safezone */
 
-var SafeZone = (function(){
+var Safezone = (function(){
   'use strict';
 
-  function SafeZone(game){
+  function Safezone(game){
     this.width    = game.canvas.width;
     this.height   = 60;
     this.x        = 0;
     this.y        = (game.canvas.height - 60);
   }
 
-  SafeZone.prototype.draw = function(game){
+  Safezone.prototype.draw = function(game){
 //    game.ctx.beginPath();
 //    game.ctx.lineWidth= '2';
 //    game.ctx.strokeStyle= 'black';
@@ -18,6 +18,6 @@ var SafeZone = (function(){
     game.ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 
-  return SafeZone;
+  return Safezone;
 
 })();

@@ -2,7 +2,7 @@
 var Filter = (function(){
   'use strict';
   function Filter(game){
-    var randY   = Math.floor(Math.random() * (game.canvas.height - 62));
+    var randY   = Math.floor(Math.random() * (game.canvas.height - game.safezone.height));
     this.left   = 0;
     this.top    = randY;
     this.width  = 10;
@@ -24,7 +24,7 @@ var Filter = (function(){
     this.cY         = this.top + (this.length / 2);
     var sumSquares  = Math.pow((spam.cX - this.cX), 2) + Math.pow((spam.cY - this.cY), 2),
     distance        = Math.sqrt(sumSquares),
-    spamCaught      = distance < spam.r + 3;
+    spamCaught      = distance < spam.r + 0.3 * this.length;
 
     return spamCaught;
   };

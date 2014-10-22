@@ -38,13 +38,6 @@ var Spam = (function(){
     this.cY = this.y + (this.height / 2);
   };
 
-//  Spam.prototype.isFiltered = function(game, filters){
-//    var sumsquares = Math.pow(this.cX - filters.filter.cX, 2) + Math.pow(this.cY - filters.filter.cY, 2),
-//        distance   = Math.sqrt(sumsquares);
-
-//    return distance < (this.r);
-//  };
-
   return Spam;
 
 })();

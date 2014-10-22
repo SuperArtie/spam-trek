@@ -7,9 +7,9 @@
     var game  = null,
         timer = null;
     resetClock();
-    //document.addEventListener('deviceready', function(){
-    //  game = new Game();
-    //});
+//    document.addEventListener('deviceready', function(){
+//      game = new Game();
+//    });
     $scope.start = function(){
       game = new Game();
       game.start();

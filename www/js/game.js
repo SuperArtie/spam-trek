@@ -1,8 +1,9 @@
 /* exported Game */
-/* global Filter, Spam, Asset, Mailbox, SafeZone */
+/* global Filter, Spam, Asset, Mailbox, Safezone, Envelope */
 var Game = (function(){
   'use strict';
-  var filters = [];
+  var filters   = [],
+      envelopes = [];
   function Game(){
     var bodyHeight     = window.innerHeight,
         headerHeight   = document.getElementsByTagName('ion-header-bar')[0].clientHeight;
@@ -13,6 +14,7 @@ var Game = (function(){
     this.assets        = Asset.load();
     this.inBox         = false;
     this.filtered      = false;
+    this.collected     = [];
     this.listen();
   }
   Game.prototype.listen = function(){
@@ -24,7 +26,7 @@ var Game = (function(){
     var self = this;
     // is the spam in the mailbox?
     this.inBox = this.mailbox.isSpamInside(this);
-    // has the spam been filtered
+    // has the spam been filtered?
     for(var i = 0; i < filters.length; i++){
       if(filters[i].catchSpam(self.spam)){
         self.filtered = true;
@@ -34,11 +36,14 @@ var Game = (function(){
       }
     }
     this.clear();
-    this.safeZone.draw(this);
+    this.safezone.draw(this);
     this.mailbox.draw(this);
+//    for(i = 0; i < envelopes.length; i++){
+//      envelopes[i].draw(this);
+//    }
     this.spam.draw(this);
     for(i = 0; i < filters.length; i++){
-      filters[i].draw(this);
+      filters[i].draw(self);
     }
     if(this.inBox || this.filtered){
       window.dispatchEvent(new Event('gameover'));
@@ -50,15 +55,28 @@ var Game = (function(){
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   };
   Game.prototype.start = function(){
-    this.safeZone = new SafeZone(this);
+    var self = this;
+    this.safezone = new Safezone(this);
     this.mailbox = new Mailbox(this);
     this.spam = new Spam(this);
-    setInterval(generateFilters, 1000);
+    setInterval(generateFilters(self), 1000);
+    generateEnvelopes(self);
     this.loop();
   };
-  function generateFilters(){
-    var filter = new Filter(this);
+  function generateFilters(game){
+    var filter = new Filter(game);
     filters.push(filter);
+  }
+  function generateEnvelopes(game){
+    console.log('game in generateEnvelopes>>', game);
+    for(var i = 0; i < 11; i++){
+      console.log('game in for loop>>>', game);
+      console.log('Envelope....', Envelope);
+      var envelope = new Envelope(game);
+      console.log('envelope after New Envelope>>>', envelope);
+      envelopes.push(envelope);
+      console.log('envelopes in generateEnvelopes>>', envelopes);
+    }
   }
   return Game;
 })();
