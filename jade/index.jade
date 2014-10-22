@@ -15,12 +15,15 @@ html
     script(src='js/assets.js')
     script(src='js/safezone.js')
     script(src='js/mailbox.js')
+    script(src='js/buffer.js')
+    script(src='js/envelope.js')
+
 
   body(ng-app='spam-trek', ng-controller='MainCtrl')
     ion-pane
       ion-header-bar.bar-stable
         button.button.button-assertive {{clock}} s
         h1.title spam-trek 5 and a half deep spam 2 deluxe next spammeration
-        button.button.button-balanced(ng-click='start()') START!!!
+        button.button.button-balanced(ng-click='start()', ng-show='button') START!!!
       ion-content
         canvas#canvas
