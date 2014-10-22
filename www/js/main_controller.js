@@ -4,17 +4,35 @@
   angular.module('spam-trek')
   .controller('MainCtrl', ['$scope', '$interval', function($scope, $interval){
     $scope.title = 'spam-trek deluxe';
+    $scope.startButton = true;
+    $scope.stopButton = false;
     var game  = null,
         timer = null;
     resetClock();
-    //document.addEventListener('deviceready', function(){
-    //  game = new Game();
-    //});
-    $scope.start = function(){
+    document.addEventListener('deviceready', function(){
+      setTimeout(function(){
+        navigator.splashscreen.hide();
+      }, 3000);
+      console.log();
       game = new Game();
+    });
+
+    $scope.start = function(){
+      //game = new Game();
       game.start();
       startClock();
+      $scope.startButton = false;
+      $scope.stopButton = true;
     };
+
+    $scope.stop = function(){
+      cancelTimer();
+      resetClock();
+      game.stop();
+      $scope.startButton = true;
+      $scope.stopButton = false;
+    };
+
     function startClock(){
       resetClock();
       cancelTimer();
@@ -27,6 +45,8 @@
     }
     window.addEventListener('gameover', function(){
       cancelTimer();
+      $scope.startButton = true;
+      $scope.stopButton = false;
     });
     function cancelTimer(){
       $interval.cancel(timer);

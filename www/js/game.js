@@ -56,6 +56,14 @@ var Game = (function(){
     setInterval(generateFilters, 1000);
     this.loop();
   };
+
+  Game.prototype.stop = function(){
+    this.saveZone = null;
+    this.mailbox = null;
+    this.spam = null;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  };
+
   function generateFilters(){
     var filter = new Filter(this);
     filters.push(filter);
