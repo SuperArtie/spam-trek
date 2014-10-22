@@ -10,9 +10,9 @@
         timer = null;
     resetClock();
     document.addEventListener('deviceready', function(){
-      /*setTimeout(function(){
+      setTimeout(function(){
         navigator.splashscreen.hide();
-      }, 3000);*/
+      }, 3000);
       //game = new Game();
     });
 

@@ -87,13 +87,13 @@ var Game = (function(){
   };
 
   Game.prototype.stop = function(){
-    filters.length = [];
-    buffers= [];
-    envelopes = [];
     this.saveZone = null;
     this.mailbox = null;
     this.spam = null;
     this.clear();
+    filters = [];
+    buffers = [];
+    envelopes = [];
     clearInterval(this.buff);
     clearInterval(this.filt);
   };
