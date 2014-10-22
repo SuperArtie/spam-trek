@@ -72,9 +72,10 @@ var Game = (function(){
     for(var i = 0; i < 11; i++){
       console.log('game in for loop>>>', game);
       console.log('Envelope....', Envelope);
-      var envelopeX = new Envelope(game);
-      console.log('envelopeX after New Envelope>>>', envelopeX);
-      envelopes.push(envelopeX);
+      debugger;
+      var envelope = new Envelope(game);
+      console.log('envelopeX after New Envelope>>>', envelope);
+      envelopes.push(envelope);
       console.log('envelopes in generateEnvelopes>>', envelopes);
     }
   }

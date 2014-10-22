@@ -18,7 +18,6 @@ var Filter = (function(){
     game.ctx.closePath();
     game.ctx.stroke();
   };
-
   Filter.prototype.catchSpam = function(spam){
     this.cX         = this.left + (this.width / 2);
     this.cY         = this.top + (this.length / 2);
