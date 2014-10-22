@@ -63,6 +63,8 @@ var Game = (function(){
     this.mailbox = null;
     this.spam = null;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    clearInterval(this.interval);
+    filters = [];
   };
 
   function generateFilters(){
