@@ -22,9 +22,10 @@
   <body ng-app="spam-trek" ng-controller="MainCtrl">
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <button class="button button-assertive">{{clock}} s</button>
+        <div>{{clock}} s &nbsp;</div>
         <h1 class="title">spam-trek 5 and a half deep spam 2 deluxe next spammeration</h1>
-        <button ng-click="start()" class="button button-balanced">START!!!</button>
+        <button ng-click="start()" ng-show="startButton" class="button button-balanced">START!</button>
+        <button ng-click="stop()" ng-show="stopButton" class="button button-balanced">RESET!</button>
       </ion-header-bar>
       <ion-content>
         <canvas id="canvas"></canvas>
