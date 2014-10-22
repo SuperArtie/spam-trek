@@ -42,6 +42,7 @@ var Game = (function(){
     }
     if(this.inBox || this.filtered){
       window.dispatchEvent(new Event('gameover'));
+      clearInterval(this.interval);
     }else{
       window.requestAnimationFrame(this.loop.bind(this));
     }
@@ -53,7 +54,7 @@ var Game = (function(){
     this.safeZone = new SafeZone(this);
     this.mailbox = new Mailbox(this);
     this.spam = new Spam(this);
-    setInterval(generateFilters, 1000);
+    this.interval = setInterval(generateFilters, 1000);
     this.loop();
   };
 
