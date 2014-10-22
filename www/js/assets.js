@@ -15,6 +15,15 @@ var Asset = (function(){
     asset.mailbox = new Image();
     asset.mailbox.src = 'img/mailbox.jpg';
 
+    asset.filter = new Image();
+    asset.filter.src = 'img/filter.png';
+
+    asset.buffer = new Image();
+    asset.buffer.src = 'img/buffer.png';
+
+    asset.envelope = new Image();
+    asset.envelope.src = 'img/envelope.png';
+
     return asset;
   };
 

@@ -4,12 +4,13 @@ var Spam = (function(){
   'use strict';
 
   function Spam(game){
-    this.width  = 30;
-    this.height = 30;
+    this.width  = 50;
+    this.height = 50;
     this.x      = Math.floor(Math.random() * (game.canvas.width - this.width));
     this.y      = Math.floor(Math.random() * ((game.canvas.height- this.height) - (game.canvas.height - this.height * 2)) + (game.canvas.height - this.height * 2));
     this.cX     = this.x + (this.width / 2);
     this.cY     = this.y + (this.height / 2);
+    this.r      = this.width / 2;
   }
 
   Spam.prototype.draw = function(game){
@@ -36,6 +37,13 @@ var Spam = (function(){
     this.cX = this.x + (this.width / 2);
     this.cY = this.y + (this.height / 2);
   };
+
+//  Spam.prototype.isFiltered = function(game, filters){
+//    var sumsquares = Math.pow(this.cX - filters.filter.cX, 2) + Math.pow(this.cY - filters.filter.cY, 2),
+//        distance   = Math.sqrt(sumsquares);
+
+//    return distance < (this.r);
+//  };
 
   return Spam;
 

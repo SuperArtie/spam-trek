@@ -5,6 +5,7 @@ html
     meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width')
     title spam-trek
     link(href='css/ionic.app.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
     script(src='lib/ionic/js/ionic.bundle.js')
     script(src='cordova.js')
     script(src='js/app.js')
@@ -15,7 +16,8 @@ html
     script(src='js/assets.js')
     script(src='js/safezone.js')
     script(src='js/mailbox.js')
-
+    script(src='js/buffer.js')
+    script(src='js/envelope.js')
   body(ng-app='spam-trek', ng-controller='MainCtrl')
     ion-pane
       ion-header-bar.bar-stable
