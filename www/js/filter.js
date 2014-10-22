@@ -2,7 +2,7 @@
 var Filter = (function(){
   'use strict';
   function Filter(game){
-    var randY   = Math.floor(Math.random()*game.canvas.height);
+    var randY   = Math.floor(Math.random() * (game.canvas.height - 62));
     this.left   = 0;
     this.top    = randY;
     this.width  = 10;
