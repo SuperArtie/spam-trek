@@ -4,8 +4,8 @@ var Spam = (function(){
   'use strict';
 
   function Spam(game){
-    this.width  = 30;
-    this.height = 30;
+    this.width  = 50;
+    this.height = 50;
     this.x      = Math.floor(Math.random() * (game.canvas.width - this.width));
     this.y      = Math.floor(Math.random() * ((game.canvas.height- this.height) - (game.canvas.height - this.height * 2)) + (game.canvas.height - this.height * 2));
     this.cX     = this.x + (this.width / 2);

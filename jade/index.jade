@@ -5,6 +5,7 @@ html
     meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width')
     title spam-trek
     link(href='css/ionic.app.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
     script(src='lib/ionic/js/ionic.bundle.js')
     script(src='cordova.js')
     script(src='js/app.js')
@@ -17,13 +18,13 @@ html
     script(src='js/mailbox.js')
     script(src='js/buffer.js')
     script(src='js/envelope.js')
-
-
   body(ng-app='spam-trek', ng-controller='MainCtrl')
     ion-pane
       ion-header-bar.bar-stable
-        button.button.button-assertive {{clock}} s
-        h1.title spam-trek 5 and a half deep spam 2 deluxe next spammeration
-        button.button.button-balanced(ng-click='start()', ng-show='button') START!!!
+        div {{clock}} s&nbsp;&nbsp;
+        div {{collected}} / {{5 + level*3}}&nbsp;&nbsp;
+        div Level {{level}}
+        h1.title SpamTrek
+        button.button.button-balanced(ng-click='start()', ng-show='startButton') START!
       ion-content
         canvas#canvas

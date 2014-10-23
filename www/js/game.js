@@ -1,5 +1,5 @@
 /* exported Game */
-/* global Filter, Spam, Asset, Mailbox, Safezone, Buffer, Envelope */
+/* global Filter, Spam, Asset, Mailbox, SafeZone, Buffer, Envelope */
 var Game = (function(){
   'use strict';
   var filters = [],
@@ -18,6 +18,7 @@ var Game = (function(){
     this.collected     = 0;
     this.open          = false;
     this.buffered      = false;
+    this.level         = 0;
     this.listen();
   }
   Game.prototype.listen = function(){
@@ -50,13 +51,16 @@ var Game = (function(){
       }
     }
     for(var k = 0; k < envelopes.length; k++){
+      //debugger;
+      //console.log(k);
       if(envelopes[k].collect(self.spam)){
         envelopes.splice([k], 1);
         self.collected += 1;
+        window.dispatchEvent(new Event('collect'));
       }
     }
     this.clear();
-    if(this.collected >= 5){
+    if(this.collected >= 5+(this.level*3)){
       this.mailbox = new Mailbox(this);
       this.mailbox.draw(this);
       this.open = true;
@@ -80,6 +84,15 @@ var Game = (function(){
     }
 
     if(this.inBox || this.filtered || this.buffered){
+      if(this.inBox){
+        this.level++;
+      }else{
+        this.level = 0;
+      }
+      this.collected = 0;
+      clearInterval(this.buff);
+      clearInterval(this.filt);
+      envelopes = [];
       window.dispatchEvent(new Event('gameover'));
     }else{
       window.requestAnimationFrame(this.loop.bind(this));
@@ -90,30 +103,33 @@ var Game = (function(){
   };
   Game.prototype.start = function(){
     var self = this;
-    this.safeZone = new Safezone(this);
+    this.safeZone = new SafeZone(this);
     this.spam = new Spam(this);
-    setInterval(generateFilters, 1000);
-    setInterval(generateBuffers, 1000);
+    var buff = 1500-this.level*250;
+    console.log('buff', buff, 'level', this.level);
+    this.buff = setInterval(function(){generateBuffers(self);}, buff);
+    this.filt = setInterval(function(){generateFilters(self);}, buff);
     generateEnvelopes(this);
-
     this.loop();
   };
-
-  function generateFilters(){
-    var filter = new Filter(this);
+  function generateFilters(game){
+    var filter = new Filter(game);
     filters.push(filter);
   }
 
-  function generateBuffers(){
-    var buffer = new Buffer(this);
+  function generateBuffers(game){
+    //console.log('hey');
+    var buffer = new Buffer(game);
     buffers.push(buffer);
+    //console.log(buffers.length, ' ', buffers[0].speed);
   }
 
   function generateEnvelopes(game){
-    for(var i = 0; i < 10; i++){
+    for(var i = 0; i < 10 + game.level; i++){
       var envelope = new Envelope(game);
       envelopes.push(envelope);
     }
+    console.log(envelopes);
   }
 
   return Game;

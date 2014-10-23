@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>spam-trek</title>
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
     <script src="js/app.js"></script>
@@ -21,9 +22,11 @@
   <body ng-app="spam-trek" ng-controller="MainCtrl">
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <button class="button button-assertive">{{clock}} s</button>
-        <h1 class="title">spam-trek 5 and a half deep spam 2 deluxe next spammeration</h1>
-        <button ng-click="start()" ng-show="button" class="button button-balanced">START!!!</button>
+        <div>{{clock}} s&nbsp;&nbsp;</div>
+        <div>{{collected}} / {{5 + level*3}}&nbsp;&nbsp;</div>
+        <div>Level {{level}}</div>
+        <h1 class="title">SpamTrek</h1>
+        <button ng-click="start()" ng-show="startButton" class="button button-balanced">START!</button>
       </ion-header-bar>
       <ion-content>
         <canvas id="canvas"></canvas>

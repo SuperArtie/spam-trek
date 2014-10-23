@@ -2,12 +2,12 @@
 var Filter = (function(){
   'use strict';
   function Filter(game){
-    var randY   = Math.floor(Math.random() * (game.canvas.height - 62));
+    var randY   = Math.floor(Math.random() * (game.canvas.height - 82));
     this.left   = 0;
     this.top    = randY;
     this.width  = 30;
     this.length = 30;
-    this.speed  = Math.floor(Math.random() * 3) + 1;
+    this.speed  = Math.floor(Math.random() * 3 + game.level) + 1;
     this.cX     = this.left + (this.width / 2);
     this.cY     = this.top + (this.length / 2);
     this.isBlop = false;

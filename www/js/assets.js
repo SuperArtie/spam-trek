@@ -1,4 +1,4 @@
-///* global Media */
+/* global Media */
 /* exported Asset */
 
 var Asset = (function(){
